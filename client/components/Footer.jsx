@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 export class Footer extends React.Component {
-  render () {
+  render() {
     return (
       <>
+        day tripper
         <p style={{ color: 'darkgrey', fontSize: '.75rem', padding: '50px', marginTop: '50px' }}>  copyright  2020 </p>
 
       </>
@@ -12,7 +13,7 @@ export class Footer extends React.Component {
   }
 }
 
-function mapStateToProps () {
+function mapStateToProps() {
   return {
   }
 }
