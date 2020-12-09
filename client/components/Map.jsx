@@ -13,7 +13,7 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchTrips(this.state.city, this.state.category))
+    this.props.dispatch(fetchTrips(this.state.city))
     console.log('mounted!')
   }
 
@@ -23,7 +23,7 @@ class Map extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.updateCity()
+    this.props.dispatch(fetchTrips(this.state.city))
     if (this.state.city === 'Wellington') {
       this.setState({ lat: -41.28664, lng: 174.77557 })
     } else if (this.state.city === 'Christchurch') {
