@@ -1,13 +1,11 @@
 import React from 'react'
 import classes from './BackgroundVideo.module.css'
 import { connect } from 'react-redux'
-import { fetchWeathers, updateWeatherLocation } from '../actions/index'
+import { fetchWeathers } from '../actions/index'
 
 export class BackgroundVideo extends React.Component {
   componentDidMount() {
-    console.log(this.props)
     this.updateWeather()
-
   }
 
   componentDidUpdate(previousProps) {
@@ -18,40 +16,39 @@ export class BackgroundVideo extends React.Component {
 
   updateWeather = () => {
     const coordinate = this.assignCoordinate()
-    console.log(coordinate, coordinate.woeid)
     this.props.dispatch(fetchWeathers(coordinate.woeid))
   }
 
   assignCoordinate = () => {
-    if (this.props.weatherLocation == 'Wellington') { //2351310
+    if (this.props.weatherLocation === 'Wellington') { // 2351310
       return ({ woeid: 2351310 })
-    } else if (this.props.weatherLocation == 'Christchurch') { //2348327
+    } else if (this.props.weatherLocation === 'Christchurch') { // 2348327
       return ({ woeid: 2348327 })
-    } else if (this.props.weatherLocation == 'Melbourne') { //1103816
+    } else if (this.props.weatherLocation === 'Melbourne') { // 1103816
       return ({ woeid: 1103816 })
-    } else if (this.props.weatherLocation == 'Auckland') { //2348079
+    } else if (this.props.weatherLocation === 'Auckland') { // 2348079
       return ({ woeid: 2348079 })
     }
   }
 
-  //Videos
+  // Videos
   assignCondition = (weatherToday) => {
-    console.log(weatherToday)
-    if (weatherToday == 'hc' || weatherToday == 's' || weatherToday == 'lr') {
+    if (weatherToday === 'hc' || weatherToday === 's' || weatherToday === 'lr') {
       return 'cloudy'
-    } else if (weatherToday == 'lc' || weatherToday == 'c') {
+    } else if (weatherToday === 'lc' || weatherToday === 'c') {
       return 'sunny'
-    } else if (weatherToday == 'h' || weatherToday == 't' || weatherToday == 'hr') {
+    } else if (weatherToday === 'h' || weatherToday === 't' || weatherToday === 'hr') {
       return 'raining'
-    } else ('Broken')
+    } else
+      return ('loading...')
   }
 
   assignVideo = (conditionToday) => {
-    if (conditionToday == 'sunny') {
+    if (conditionToday === 'sunny') {
       return 'videos/sunny.mp4'
-    } else if (conditionToday == 'cloudy') {
+    } else if (conditionToday === 'cloudy') {
       return 'videos/video.mp4'
-    } else if (conditionToday == 'raining') {
+    } else if (conditionToday === 'raining') {
       return 'videos/rain.mp4'
     }
   }
@@ -77,7 +74,6 @@ function mapStateToProps(globalState) {
   const { consolidated_weather = [] } = globalState.weathers
   const weatherToday = consolidated_weather.map(el => el.weather_state_abbr)[0]
   const weatherLocation = globalState.weatherLocation
-  console.log(globalState)
   return {
     weatherToday,
     weatherLocation

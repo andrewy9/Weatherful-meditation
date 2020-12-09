@@ -22,7 +22,5 @@ describe('fetechWeathers', () => {
       fetchWeathers()(fakeDispatch)
       expect(getWeathers).toHaveBeenCalled()
     })
-
   })
 })
-

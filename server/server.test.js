@@ -2,12 +2,11 @@ import request from 'supertest'
 import server from './server'
 import nock from 'nock'
 
-
 describe('GET /weathers', () => {
   const fakeObj = {
     weather: 'is bad'
   }
-  const scope = nock(`https://www.metaweather.com`)
+  const scope = nock('https://www.metaweather.com')
     .get('/api/location/2351310')
     .reply(200, fakeObj)
 

@@ -14,6 +14,7 @@ class Map extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(fetchTrips(this.state.city))
+    console.log('mounted!')
   }
 
   handleChange = (e) => {
@@ -23,18 +24,17 @@ class Map extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.dispatch(fetchTrips(this.state.city))
-    if (this.state.city == 'Wellington') {
+    if (this.state.city === 'Wellington') {
       this.setState({ lat: -41.28664, lng: 174.77557 })
-    } else if (this.state.city == 'Christchurch') {
+    } else if (this.state.city === 'Christchurch') {
       this.setState({ lat: -43.525650, lng: 172.639847 })
-    } else if (this.state.city == 'Melbourne') {
+    } else if (this.state.city === 'Melbourne') {
       this.setState({ lat: -37.813629, lng: 144.963058 })
-    } else if (this.state.city == 'Auckland') {
+    } else if (this.state.city === 'Auckland') {
       this.setState({ lat: -36.848461, lng: 174.763336 })
     }
     this.props.dispatch(updateWeatherLocation(this.state.city)) //
   }
-
 
   gMap = () => {
     return (
@@ -49,7 +49,6 @@ class Map extends React.Component {
             position={{ lat: venue.location.lat, lng: venue.location.lng }}
             onClick={(e) => {
               this.setState({ selectedVenue: venue })
-              e.preventDefault()
             }}
           />
         ))}
@@ -73,8 +72,6 @@ class Map extends React.Component {
   }
 
   render() {
-
-
     const WrappedMap = withScriptjs(withGoogleMap(this.gMap))
     return (
       <>
@@ -100,7 +97,7 @@ class Map extends React.Component {
           </div>
           <button type='submit' className='submit'>
             submit
-            </button>
+          </button>
         </form>
       </>
     )
@@ -119,4 +116,3 @@ function mapStateToProps(globalState) {
 }
 
 export default connect(mapStateToProps)(Map)
-
