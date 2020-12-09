@@ -15,7 +15,6 @@ server.get('/api/v1/weathers/:woeid', (req, res) => {
     .then(response => res.json(response.body))
 })
 
-
 server.get('/api/v1/gmap/:city', (req, res) => {
   const city = req.params.city
   const endPoint = 'https://api.foursquare.com/v2/venues/explore?'

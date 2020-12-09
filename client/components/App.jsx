@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchWeathers } from '../actions'
-import Weather from './Weather'
 import Trips from './Trips'
 import BackGroundVideo from './BackgroundVideo'
 import Map from './Map'
@@ -22,7 +21,7 @@ export class App extends React.Component {
 
   updateWeather = () => {
     const coordinate = this.assignCoordinate()
-    console.log(coordinate)
+
     this.props.dispatch(fetchWeathers(coordinate.woeid)) //works with the api to fetch JSON api data
   }
 
@@ -43,9 +42,11 @@ export class App extends React.Component {
     return (
       <>
         <div>
+
+        </div>
+        <div>
           <BackGroundVideo />
           <Nav />
-          <Weather />
         </div>
         <div className='arrow'>
           <svg id="more-arrows">

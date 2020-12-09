@@ -1,22 +1,26 @@
+import { fetchWeathers } from './index'
 import { getWeathers } from '../apis/weathers'
 
-describe('getWeathers makes a successful api call', () => {
-  test('call the getWeathers api method', () => {
-    const testWeather = {
-      weather: 'lc'
-    }
+jest.mock('../apis/weathers', () => ({
+  getWeathers: jest.fn()
+}))
 
-    // const mockGeolocation = {
-    //   getCurrentPosition: jest.fn(),
-    //   watchPosition: jest.fn()
-    // };
+const fakeDispatch = jest.fn()
 
-    // global.navigator.geolocation = mockGeolocation;
+describe('fetechWeathers', () => {
+  describe('this bit works', () => {
+    const fakeWeather = [{
+      weather: 'sux'
+    }]
 
-    const testAction = getWeathers(testWeather)
+    beforeAll(() => {
+      jest.clearAllMocks()
+      getWeathers.mockImplementation(() => Promise.resolve(fakeWeather))
+    })
 
-    expect(testAction).toHaveBeenCalled()
-    expect(testAction).toHaveBeenCalledWith('testWeather')
-    expect(testAction).toHaveBeenCalledTimes(1)
+    test('call the getWeathers api client', () => {
+      fetchWeathers()(fakeDispatch)
+      expect(getWeathers).toHaveBeenCalled()
+    })
   })
 })
