@@ -1,13 +1,10 @@
 import { getWeathers, geoLocate } from '../apis/weathers'
 import { getTrips } from '../apis/googleMap'
 
-
 export const SET_WEATHERS = 'SET_WEATHERS'
 export const SET_BACKGROUND = 'SET_BACKGROUND'
 export const SET_TRIPS = 'SET_TRIPS'
 export const SET_LOCATION = 'SET_LOCATION'
-
-
 
 export function setWeather(weathers) {
   return {
