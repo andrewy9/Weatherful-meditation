@@ -42,6 +42,9 @@ export class App extends React.Component {
     return (
       <>
         <div>
+
+        </div>
+        <div>
           <BackGroundVideo />
           <Nav />
         </div>

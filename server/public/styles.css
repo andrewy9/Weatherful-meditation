@@ -271,8 +271,8 @@ polygon.arrow-top {
 
 .googlebox {
   margin-top: 150px;
-  margin: auto;
-  width: auto !important;
+  margin:auto;
+  width: 800px !important;
   height: 500px;
   text-align: center;
 }

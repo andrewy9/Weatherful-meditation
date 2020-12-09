@@ -9,11 +9,11 @@ class Map extends React.Component {
     selectedVenue: '',
     city: 'Auckland',
     lat: -36.848461,
-    lng: 174.763336
+    lng: 174.763336,
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchTrips(this.state.city))
+    this.props.dispatch(fetchTrips(this.state.city, this.state.category))
     console.log('mounted!')
   }
 
@@ -23,7 +23,7 @@ class Map extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.dispatch(fetchTrips(this.state.city))
+    this.updateCity()
     if (this.state.city === 'Wellington') {
       this.setState({ lat: -41.28664, lng: 174.77557 })
     } else if (this.state.city === 'Christchurch') {
@@ -73,6 +73,7 @@ class Map extends React.Component {
 
   render() {
     const WrappedMap = withScriptjs(withGoogleMap(this.gMap))
+
     return (
       <>
         <div className='googlebox' style={{ width: '100vw', height: '100vh' }}>
@@ -105,13 +106,11 @@ class Map extends React.Component {
 }
 
 function mapStateToProps(globalState) {
-  const trips = globalState.trips
-  const tripVenue = trips.map(el => el.venue)
+  const tripVenue = globalState.trips.map(el => el.venue)
   const weatherLocation = globalState.weatherLocation
   return {
-    trips,
     tripVenue,
-    weatherLocation
+    weatherLocation,
   }
 }
 
