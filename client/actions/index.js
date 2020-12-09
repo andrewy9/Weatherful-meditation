@@ -32,11 +32,12 @@ export function setTrips(trips) {
 
 export function fetchWeathers(woeid) {
   return dispatch => {
+    getWeathers(woeid)
       .then(weathers => {
-    console.log(weathers)
-    dispatch(setWeather(weathers))
-    return null
-  })
+        console.log(weathers)
+        dispatch(setWeather(weathers))
+        return null
+      })
 
       .catch(error => console.log(error))
   }
