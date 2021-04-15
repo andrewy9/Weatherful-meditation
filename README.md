@@ -1,14 +1,12 @@
 # Day Tripper
 
 
-You can find the server running on [http://localhost:3000](http://localhost:3000).
+Enspiral Dev Academy perosonal project, prior to learning Redux.
 
 ## Details
 
 This repo includes:
 
-* a single, simple API endpoint 
-* a single React component (`<App />`)
 * a database module 
 * an API client module 
 * configuration for Jest and Enzyme (including JSDOM)
